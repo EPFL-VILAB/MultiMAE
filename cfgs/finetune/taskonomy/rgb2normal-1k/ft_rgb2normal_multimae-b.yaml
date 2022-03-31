@@ -1,0 +1,48 @@
+# Taskonomy config
+
+# Finetune from:
+finetune: '/path/to/pretrained_weights' # Change me
+
+# Input tasks
+in_domains: rgb
+out_domains: normal
+decoder_main_tasks: rgb
+
+# Architecture
+model: multivit_base
+output_adapter: dpt
+patch_size: 16
+num_global_tokens: 1
+drop_path_encoder: 0.1
+drop_path_decoder: 0.0
+
+# Train
+epochs: 100
+opt: adamw
+lr: 0.0003 # 3e-4
+warmup_lr: 0.000001 # = 1e-6
+min_lr: 0.
+warmup_epochs: 5
+batch_size: 8
+input_size: 384
+layer_decay: 0.75
+
+# Data info
+data_path: '/path/to/dataset' # Change me
+dist_eval: True
+eval_freq: 5
+max_train_images: 800
+max_val_images: 200
+max_test_images: 54514 # all available test images = 54514
+
+# Misc.
+find_unused_params: True
+
+# Wandb and logging
+log_wandb: False # Set to True to log to Weights & Biases
+wandb_project: 'multimae-finetune-taskonomy'
+wandb_entity: null # Change if needed
+wandb_run_name: 'ft_rgb2normal_taskonomy_multimae-b'
+log_images_wandb: True
+log_images_freq: 5
+output_dir: 'output/finetune/taskonomy/rgb2normal-1k/ft_rgb2normal_taskonomy_multimae-b'

@@ -1,0 +1,15 @@
+*.swp
+**/__pycache__/**
+.dumbo.json
+checkpoints/
+.idea/*
+**/.ipynb_checkpoints/**
+run.sh
+output/
+wandb/
+runs/
+.vscode/
+*.pth
+*.DS_Store
+notebooks/
+pretrained/

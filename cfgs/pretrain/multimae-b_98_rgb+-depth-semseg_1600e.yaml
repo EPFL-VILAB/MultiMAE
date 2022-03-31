@@ -1,0 +1,38 @@
+# Input and output tasks
+in_domains: rgb-depth-semseg
+out_domains: rgb-depth-semseg
+standardize_depth: True
+extra_norm_pix_loss: True
+
+# Architecture
+model: pretrain_multimae_base
+decoder_dim: 256
+input_size: 224
+patch_size: 16
+alphas: 1.0  # Dirichlet concentration parameter
+num_encoded_tokens: 98 # Total would be 196 * 3 patches. 196 / 2 = 98
+num_global_tokens: 1
+decoder_use_task_queries: True
+decoder_depth: 2
+
+# Train
+epochs: 1600
+opt: adamw
+blr: 0.0001 # this is base_lr = 1e-4, lr = base_lr * batch_size / 256
+warmup_lr: 0.000001 # 1e-6
+min_lr: 0.
+warmup_epochs: 40
+batch_size: 256
+hflip: 0.5
+loss_on_unmasked: False
+fp32_output_adapters: semseg
+
+# Data
+data_path: '/path/to/dataset' # Change me
+
+# Wandb logging
+log_wandb: False # Set to True to log to Weights & Biases
+wandb_project: 'multimae-pretrain'
+wandb_entity: null # Change if needed
+wandb_run_name: multimae-b_98_rgb+-depth-semseg_1600e
+output_dir: 'output/pretrain/multimae-b_98_rgb+-depth-semseg_1600e' # Change directory if needed

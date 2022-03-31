@@ -1,0 +1,52 @@
+# NYU depth config
+
+# Finetune from:
+finetune: '/path/to/pretrained_weights' # Change me
+
+# Input tasks
+in_domains: rgb
+use_mask_valid: True # Requires "task" mask_valid to be saved to disk
+
+# Architecture
+model: multivit_base
+patch_size: 16
+num_global_tokens: 1
+drop_path_encoder: 0.0
+output_adapter: dpt
+
+# Train
+loss: berhu
+epochs: 2000
+opt: adamw
+lr: 0.0001 # = 1e-4
+warmup_lr: 0.000001 # = 1e-6
+min_lr: 0.
+warmup_epochs: 100
+batch_size: 64
+input_size: 256
+layer_decay: 0.75
+weight_decay: 0.0001 # 1e-4
+
+# Augmentation
+aug_name: nyu-augs
+
+# Data info
+data_path: '/path/to/dataset' # Change me
+eval_data_path: '/path/to/eval_dataset' # Change me
+color_augs: True
+dataset_name: nyu
+dist_eval: True
+eval_freq: 250
+standardize_depth: False
+
+# Misc.
+find_unused_params: True
+
+# Wandb and logging
+log_wandb: False # Set to True to log to Weights & Biases
+wandb_project: 'multimae-finetune-depth'
+wandb_entity: null # Change if needed
+wandb_run_name: 'ft_nyu_2000e_multimae-b'
+log_images_wandb: True
+log_images_freq: 250
+output_dir: '/output/finetune/depth/ft_nyu_2000e_multimae-b' # Change if needed

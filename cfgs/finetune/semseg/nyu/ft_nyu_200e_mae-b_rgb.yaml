@@ -1,0 +1,52 @@
+# NYU semseg config
+
+# Finetune from:
+finetune: '/path/to/pretrained_weights' # Change me
+
+# Input tasks
+in_domains: rgb
+
+# Architecture
+model: multivit_base
+patch_size: 16
+num_global_tokens: 1
+drop_path_encoder: 0.1
+output_adapter: convnext
+decoder_dim: 6144
+decoder_preds_per_patch: 16
+decoder_depth: 4
+
+# Train
+epochs: 200
+opt: adamw
+lr: 0.0001 # = 1e-4
+warmup_lr: 0.000001 # = 1e-6
+min_lr: 0.
+warmup_epochs: 1
+batch_size: 2
+input_size: 640
+layer_decay: 0.75
+
+# Augmentation
+aug_name: simple
+
+# Data info
+data_path: '/path/to/dataset' # Change me
+eval_data_path: '/path/to/eval_dataset' # Change me
+num_classes: 40
+dataset_name: nyu
+dist_eval: True
+seg_reduce_zero_label: True
+eval_freq: 20
+
+# Misc.
+find_unused_params: False
+
+# Wandb and logging
+log_wandb: False # Set to True to log to Weights & Biases
+wandb_project: 'multimae-finetune-semseg'
+wandb_entity: null # Change if needed
+wandb_run_name: 'ft_nyu_200e_mae-b_rgb'
+log_images_wandb: True
+log_images_freq: 20
+output_dir: 'output/finetune/semseg/nyu/ft_nyu_200e_mae-b_rgb'

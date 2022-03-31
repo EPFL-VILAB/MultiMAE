@@ -1,0 +1,52 @@
+# ADE20K config
+
+# Finetune from:
+finetune: '/path/to/pretrained_weights' # Change me
+
+# Input tasks
+in_domains: rgb
+
+# Architecture
+model: multivit_base
+patch_size: 16
+num_global_tokens: 1
+drop_path_encoder: 0.1
+output_adapter: convnext
+decoder_dim: 6144
+decoder_preds_per_patch: 16
+decoder_depth: 4
+
+# Train
+epochs: 64
+opt: adamw
+lr: 0.0001 # = 1e-4
+warmup_lr: 0.000001 # = 1e-6
+min_lr: 0.
+warmup_epochs: 1
+batch_size: 4
+input_size: 512
+layer_decay: 0.75
+
+# Augmentation
+aug_name: simple
+
+# Data
+data_path: '/path/to/dataset' # Change me
+eval_data_path: '/path/to/eval_dataset' # Change me
+num_classes: 150
+dataset_name: ade20k
+dist_eval: True
+seg_reduce_zero_label: True
+eval_freq: 1
+
+# Misc.
+find_unused_params: False
+
+# Wandb and logging
+log_wandb: False # Set to True to activate logging to Weights & Biases
+wandb_project: 'multimae-finetune-semseg'
+wandb_entity: null # Change if needed
+wandb_run_name: ft_ade_64e_mae-b_rgb
+log_images_wandb: True
+log_images_freq: 5
+output_dir: 'output/finetune/semseg/ade/ft_ade_64e_mae-b_rgb' # Change if needed

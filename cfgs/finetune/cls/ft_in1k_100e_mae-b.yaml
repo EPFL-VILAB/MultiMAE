@@ -1,0 +1,29 @@
+# Finetune from:
+finetune: '/path/to/pretrained_weights' # Change me
+
+# Model
+model: multivit_base
+patch_size: 16
+use_mean_pooling: True
+drop_path: 0.1
+
+# Train
+epochs: 100
+opt: adamw
+blr: 0.0005  # 5e-4
+weight_decay: 0.05
+warmup_epochs: 5
+batch_size: 128
+dist_eval: True
+layer_decay: 0.65
+
+# Data
+data_path: '/path/to/dataset' # Change me
+eval_data_path: '/path/to/eval_dataset' # Change me
+
+# Wandb logging
+log_wandb: False # Set to True to activate logging to Weights & Biases
+wandb_project: 'multimae-finetune-cls'
+wandb_entity: null # Change if needed
+wandb_run_name: ft_in1k_100e_mae-b
+output_dir: 'output/finetune/cls/ft_in1k_100e_mae-b' # Change if needed
