@@ -21,6 +21,7 @@ import math
 import os
 import sys
 import time
+import warnings
 from collections import OrderedDict
 from pathlib import Path
 from typing import Iterable, Optional
@@ -204,6 +205,7 @@ def get_args():
                         help='User or team name on wandb')
     parser.add_argument('--wandb_run_name', default=None, type=str,
                         help='Run name on wandb')
+    parser.add_argument('--show_user_warnings', default=False, action='store_true')
 
     # Distributed training parameters
     parser.add_argument('--world_size', default=1, type=int,
@@ -237,6 +239,9 @@ def main(args):
     # random.seed(seed)
 
     cudnn.benchmark = True
+
+    if not args.show_user_warnings:
+        warnings.filterwarnings("ignore", category=UserWarning)
 
     dataset_train, args.nb_classes = build_dataset(is_train=True, args=args)
     if args.disable_eval_during_finetuning:

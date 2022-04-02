@@ -19,6 +19,7 @@ import datetime
 import json
 import os
 import time
+import warnings
 from functools import partial
 from pathlib import Path
 from typing import Dict, Iterable
@@ -225,7 +226,7 @@ def get_args():
     parser.add_argument('--no_fp16', action='store_false', dest='fp16')
     parser.set_defaults(fp16=True)
 
-    # Wandb lobbing
+    # Wandb logging
     parser.add_argument('--log_wandb', default=False, action='store_true',
                         help='log training and validation metrics to wandb')
     parser.add_argument('--wandb_project', default=None, type=str,
@@ -237,6 +238,7 @@ def get_args():
     parser.add_argument('--log_images_wandb', action='store_true')
     parser.add_argument('--log_images_freq', default=5, type=int,
                         help="Frequency of image logging (in epochs)")
+    parser.add_argument('--show_user_warnings', default=False, action='store_true')
 
     # Distributed training parameters
     parser.add_argument('--world_size', default=1, type=int,
@@ -270,6 +272,9 @@ def main(args):
     # random.seed(seed)
 
     cudnn.benchmark = True
+
+    if not args.show_user_warnings:
+        warnings.filterwarnings("ignore", category=UserWarning)
 
     args.in_domains = args.in_domains.split('-')
     args.out_domains = ['semseg']

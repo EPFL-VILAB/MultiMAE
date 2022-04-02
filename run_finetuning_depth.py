@@ -20,6 +20,7 @@ import math
 import os
 import sys
 import time
+import warnings
 from functools import partial
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Union
@@ -282,6 +283,8 @@ def get_args():
     parser.add_argument('--log_images_wandb', action='store_true')
     parser.add_argument('--log_images_freq', default=5, type=int,
                         help="Frequency of image logging (in epochs)")
+    parser.add_argument('--show_user_warnings', default=False, action='store_true')
+
 
     # distributed training parameters
     parser.add_argument('--world_size', default=1, type=int,
@@ -316,6 +319,9 @@ def main(args):
     # random.seed(seed)
 
     cudnn.benchmark = True
+
+    if not args.show_user_warnings:
+        warnings.filterwarnings("ignore", category=UserWarning)
 
     num_tasks = utils.get_world_size()
     global_rank = utils.get_rank()

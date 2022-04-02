@@ -20,6 +20,7 @@ import math
 import os
 import sys
 import time
+import warnings
 from functools import partial
 from pathlib import Path
 from typing import Dict, Iterable, List
@@ -216,6 +217,7 @@ def get_args():
                         help='User or team name on wandb')
     parser.add_argument('--wandb_run_name', default=None, type=str,
                         help='Run name on wandb')
+    parser.add_argument('--show_user_warnings', default=False, action='store_true')
 
     # Distributed training parameters
     parser.add_argument('--world_size', default=1, type=int,
@@ -301,6 +303,9 @@ def main(args):
     # random.seed(seed)
 
     cudnn.benchmark = True
+
+    if not args.show_user_warnings:
+        warnings.filterwarnings("ignore", category=UserWarning)
 
     args.in_domains = args.in_domains.split('-')
     args.out_domains = args.out_domains.split('-')
