@@ -36,7 +36,7 @@ aug_name: simple
 # Data info
 data_path: '/path/to/dataset' # Change me
 eval_data_path: '/path/to/eval_dataset' # Change me
-test_data_path: '/path/to/test_dataset' # Change me
+test_data_path: null # Change me
 num_classes: 40
 dataset_name: hypersim
 dist_eval: True
