@@ -217,6 +217,36 @@ class MultiMAE(nn.Module):
 
         return task_masks, ids_keep, ids_restore
 
+    @staticmethod
+    def make_mask(N_H, N_W, xy_idxs, full_tasks=[], indicate_visible=True, flatten=True, device='cuda'):
+        """
+        Creates masks for each task, given lists of un-masked x,y coordinates.
+        """
+        xy_idxs = {
+            k: torch.LongTensor(v)
+            for k, v in xy_idxs.items()
+        }
+
+        task_masks = {
+            k: torch.ones(N_H, N_W).to(device)
+            for k in xy_idxs.keys()
+        }
+
+        for k in xy_idxs.keys():
+            if len(xy_idxs[k]) > 0:
+                task_masks[k][xy_idxs[k][:, 1], xy_idxs[k][:, 0]] = 0
+
+        for task in full_tasks:
+            task_masks[task][:] = 0
+
+        if not indicate_visible:
+            task_masks = {k: 1 - v for k, v in task_masks.items()}
+
+        if flatten:
+            task_masks = {k: v.flatten().unsqueeze(0) for k, v in task_masks.items()}
+
+        return task_masks
+
     def generate_input_info(self, input_task_tokens, image_size):
         input_info = OrderedDict()
         i = 0
@@ -241,6 +271,7 @@ class MultiMAE(nn.Module):
     def forward(self, 
                 x: Union[Dict[str, torch.Tensor], torch.Tensor], 
                 mask_inputs: bool = True,
+                task_masks: Dict[str, torch.Tensor] = None,
                 num_encoded_tokens: int = 128,
                 alphas: Union[float, List[float]] = 1.0,
                 sample_tasks_uniformly: bool = False,
@@ -251,6 +282,7 @@ class MultiMAE(nn.Module):
 
         :param x: Input tensor or dictionary of tensors
         :param mask_inputs: Set to True to enable random masking of input patches
+        :param task_masks: Optional dictionary of task->mask pairs.
         :param num_encoded_tokens: Number of tokens to randomly select for encoder.
             Only used if mask_inputs is True.
         :param alphas: Dirichlet distribution parameter alpha for task sampling.
@@ -292,12 +324,18 @@ class MultiMAE(nn.Module):
             num_encoded_tokens = sum([tensor.shape[1] for tensor in input_task_tokens.values()])
 
         ## Generating masks
-        task_masks, ids_keep, ids_restore = self.generate_random_masks(
-            input_task_tokens,
-            num_encoded_tokens,
-            alphas=alphas,
-            sample_tasks_uniformly=sample_tasks_uniformly
-        )
+        if task_masks is None:
+            task_masks, ids_keep, ids_restore = self.generate_random_masks(
+                input_task_tokens,
+                num_encoded_tokens,
+                alphas=alphas,
+                sample_tasks_uniformly=sample_tasks_uniformly
+            )
+        else:
+            mask_all = torch.cat([task_masks[task] for task in input_task_tokens.keys()], dim=1)
+            ids_shuffle = torch.argsort(mask_all, dim=1)
+            ids_restore = torch.argsort(ids_shuffle, dim=1)
+            ids_keep = ids_shuffle[:, :(mask_all == 0).sum()]
 
         input_tokens = torch.cat([task_tokens for task_tokens in input_task_tokens.values()], dim=1)
 

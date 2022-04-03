@@ -38,7 +38,7 @@ For comparison, we also provide the weights of a MAE ViT-B model that we pre-tra
 | Method   	     | Arch. 	 | Pre-training<br>modalities 	 | Pre-training<br>epochs 	 | Weights<br>(MultiViT) 	     | Weights<br>(timm) 	     | Config  	                                                                  |
 |----------------|---------|------------------------------|--------------------------|-----------------------------|-------------------------|----------------------------------------------------------------------------|
 | MAE      	     | ViT-B 	 | RGB                        	 | 1600                   	 | [download](https://github.com/EPFL-VILAB/MultiMAE/releases/download/pretrained-weights/mae-b_dec512d8b_1600e_multivit-c477195b.pth)                  	 | [download](https://github.com/EPFL-VILAB/MultiMAE/releases/download/pretrained-weights/mae-b_dec512d8b_1600e_timm-f74f3a8d.pth)              	 | See [MAE](https://github.com/facebookresearch/mae/blob/main/PRETRAIN.md) 	 |
-| **MultiMAE** 	 | ViT-B 	 | RGB+D+S                    	 | 1600                   	 | [download](https://github.com/EPFL-VILAB/MultiMAE/releases/download/pretrained-weights/multimae-b_98_rgb+-depth-semseg_1600e_multivit-afff3f8c.pth)                  	 | [download](https://github.com/EPFL-VILAB/MultiMAE/releases/download/pretrained-weights/multimae-b_98_rgb+-depth-semseg_1600e_timm-bafa5499.pth)             	 | [link](cfgs/pretrain/multimae-b_98_rgb+-depth-semseg_1600e.yaml) 	         |
+| **MultiMAE** 	 | ViT-B 	 | RGB+D+S                    	 | 1600                   	 | [**download**](https://github.com/EPFL-VILAB/MultiMAE/releases/download/pretrained-weights/multimae-b_98_rgb+-depth-semseg_1600e_multivit-afff3f8c.pth)                  	 | [**download**](https://github.com/EPFL-VILAB/MultiMAE/releases/download/pretrained-weights/multimae-b_98_rgb+-depth-semseg_1600e_timm-bafa5499.pth)             	 | [link](cfgs/pretrain/multimae-b_98_rgb+-depth-semseg_1600e.yaml) 	         |
 
 These pre-trained models can then be fine-tuned using this codebase to reach the following performance:
 
@@ -75,7 +75,7 @@ These pre-trained models can then be fine-tuned using this codebase to reach the
   </tr>
   <tr>
     <td>MAE</td>
-    <td align="center"><b>83.4</b></td>
+    <td align="center"><b>83.3</b></td>
     <td align="center"><b>46.2</b></td>
     <td align="center">36.5</td>
     <td align="center">-</td>
@@ -87,7 +87,7 @@ These pre-trained models can then be fine-tuned using this codebase to reach the
   </tr>
   <tr>
     <td><b>MultiMAE</b></td>
-    <td align="center">83.2</td>
+    <td align="center"><b>83.3</b></td>
     <td align="center"><b>46.2</b></td>
     <td align="center"><b>37.0</b></td>
     <td align="center"><b>38.5</b></td>

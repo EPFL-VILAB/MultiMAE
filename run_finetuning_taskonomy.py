@@ -235,6 +235,9 @@ def get_args():
                         help='Perform testing only')
     parser.add_argument('--dist_eval', action='store_true', default=False,
                     help='Enabling distributed evaluation')
+    parser.add_argument('--no_dist_eval', action='store_false', dest='dist_eval',
+                    help='Disabling distributed evaluation')
+    parser.set_defaults(dist_eval=False)
     parser.add_argument('--num_workers', default=16, type=int)
     parser.add_argument('--pin_mem', action='store_true',
                         help='Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU.')
@@ -327,7 +330,7 @@ def main(args):
 
     if True:  # args.distributed:
         sampler_train = torch.utils.data.DistributedSampler(
-            dataset_train, num_replicas=num_tasks, rank=global_rank, shuffle=True
+            dataset_train, num_replicas=num_tasks, rank=global_rank, shuffle=True, drop_last=True,
         )
         print("Sampler_train = %s" % str(sampler_train))
         if args.dist_eval:
