@@ -3,7 +3,7 @@
 [Roman Bachmann*](https://roman-bachmann.github.io/), [David Mizrahi*](https://dmizrahi.com), [Andrei Atanov](https://andrewatanov.github.io/), [Amir Zamir](https://vilab.epfl.ch/zamir/)
 
 
- [`Website`](https://multimae.epfl.ch) | `arXiv` | [`BibTeX`](#Citation)
+ [`Website`](https://multimae.epfl.ch) | [`arXiv`](https://arxiv.org/abs/2204.01678) | [`BibTeX`](#citation)
 
 
 
@@ -139,7 +139,7 @@ If you find this repository helpful, please consider citing our work:
 @article{bachmann2022multimae,
   author    = {Roman Bachmann and David Mizrahi and Andrei Atanov and Amir Zamir},
   title     = {{MultiMAE}: Multi-modal Multi-task Masked Autoencoders},
-  journal   = {arXiv},
+  journal   = {arXiv preprint arXiv:2204.01678},
   year      = {2022},
 }
 ```
