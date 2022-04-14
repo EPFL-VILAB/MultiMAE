@@ -5,6 +5,7 @@
 
  [`Website`](https://multimae.epfl.ch) | [`arXiv`](https://arxiv.org/abs/2204.01678) | [`BibTeX`](#citation)
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EPFL-VILAB/MultiMAE/blob/main/MultiMAE_Demo.ipynb) | [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/EPFL-VILAB/MultiMAE)
 
 
 Official PyTorch implementation and pre-trained models for MultiMAE: Multi-modal Multi-task Masked Autoencoders.
@@ -19,6 +20,8 @@ We introduce Multi-modal Multi-task Masked Autoencoders (**MultiMAE**), an effic
 Given a small random sample of visible patches from multiple modalities, the MultiMAE pre-training objective is to reconstruct the masked-out regions. 
 Once pre-trained, a single MultiMAE encoder can then be used for both single-modal and multi-modal downstream transfer, yielding competitive to or significantly better results than the baselines. 
 
+For interactive demos, please see our [`website`](https://multimae.epfl.ch), [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EPFL-VILAB/MultiMAE/blob/main/MultiMAE_Demo.ipynb) to play around with the visualization code, or simply upload an image to our [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/EPFL-VILAB/MultiMAE).
+
 ## Catalog
 - [x] Pre-trained models
 - [x] MultiMAE pre-training code
@@ -26,7 +29,7 @@ Once pre-trained, a single MultiMAE encoder can then be used for both single-mod
 - [x] Semantic segmentation fine-tuning code (single-modal & multi-modal)
 - [x] Depth estimation fine-tuning code
 - [x] Taskonomy fine-tuning code
-- [ ] Colab demo (coming soon)
+- [x] Colab & Hugging Face demos
 
 
 ## Pre-trained models
