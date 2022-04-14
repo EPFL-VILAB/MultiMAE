@@ -124,7 +124,7 @@ See [FINETUNING.md](FINETUNING.md) for fine-tuning instructions.
 
 ## Demo & visualizations
 
-For interactive demos, please see our [`website`](https://multimae.epfl.ch). Open our [`Colab notebook`](https://colab.research.google.com/github/EPFL-VILAB/MultiMAE/blob/main/MultiMAE_Demo.ipynb) to play around with the visualization code, or simply upload an image to our [`Hugging Face Spaces demo`](`https://huggingface.co/spaces/EPFL-VILAB/MultiMAE).
+For interactive demos, please see our [`website`](https://multimae.epfl.ch). Open our [`Colab notebook`](https://colab.research.google.com/github/EPFL-VILAB/MultiMAE/blob/main/MultiMAE_Demo.ipynb) to play around with the visualization code, or simply upload an image to our [`Hugging Face Spaces demo`](https://huggingface.co/spaces/EPFL-VILAB/MultiMAE).
 
 
 ## Acknowledgement
