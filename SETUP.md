@@ -76,5 +76,7 @@ We use two off-the-shelf networks to pseudo label the ImageNet-1K dataset.
 
 - **Depth estimation**: We use a [DPT](https://arxiv.org/abs/2103.13413) with a ViT-B-Hybrid backbone pre-trained on the [Omnidata](https://omnidata.vision/) dataset. You can find installation instructions and pre-trained weights for this model [**here**](https://docs.omnidata.vision/pretrained.html).
 - **Semantic segmentation**: We use a [Mask2Former](https://bowenc0221.github.io/mask2former/) with a Swin-S backbone pre-trained on the [COCO](https://cocodataset.org/) dataset. You can find installation instructions and pre-trained weights for this model [**here**](https://github.com/facebookresearch/Mask2Former).
- 
+
+For an example of how to use these networks for pseudo labeling, please take a look at our [**Colab notebook**](https://colab.research.google.com/github/EPFL-VILAB/MultiMAE/blob/main/MultiMAE_Demo.ipynb).
+
 :information_source: The MultiMAE pre-training strategy is flexible and can benefit from higher quality pseudo labels and ground truth data. So feel free to use different pseudo labeling networks and datasets than the ones we used!
