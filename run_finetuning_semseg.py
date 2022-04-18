@@ -732,7 +732,7 @@ def evaluate(model, criterion, data_loader, device, epoch, in_domains, num_class
 
         loss_value = loss.item()
         # If there is void, exclude it from the preds and take second highest class
-        seg_pred_argmax = seg_pred[:num_classes].argmax(dim=1)
+        seg_pred_argmax = seg_pred[:, :num_classes].argmax(dim=1)
         seg_preds.extend(list(seg_pred_argmax.cpu().numpy()))
         seg_gts.extend(list(seg_gt.cpu().numpy()))
 
