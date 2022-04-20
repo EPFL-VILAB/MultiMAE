@@ -201,7 +201,7 @@ class MultiMAE(nn.Module):
             task_masks.append(mask)
 
         mask_all = torch.cat(task_masks, dim=1)
-        ids_shuffle = torch.argsort(mask_all, dim=1)
+        ids_shuffle = torch.argsort(mask_all + torch.rand_like(mask_all.float()), dim=1)
         ids_restore = torch.argsort(ids_shuffle, dim=1)
         ids_keep = ids_shuffle[:, :num_encoded_tokens]
 
