@@ -225,7 +225,7 @@ def get_args():
                         help='Loss to use. One of [l1, l2, berhu] (default: berhu)')
 
     # Dataset parameters
-    parser.add_argument('--train_data_path', default=data_constants.NYU_TRAIN_PATH, type=str, help='dataset path')
+    parser.add_argument('--data_path', default=data_constants.NYU_TRAIN_PATH, type=str, help='dataset path')
     parser.add_argument('--eval_data_path', default=data_constants.NYU_TEST_PATH, type=str,
                         help='dataset path for evaluation')
     parser.add_argument('--aug_name', default='nyu-augs', type=str)
