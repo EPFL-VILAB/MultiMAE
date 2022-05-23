@@ -299,6 +299,7 @@ class MultiTaskDatasetFolder(VisionDataset):
             for task in self.tasks:
                 path, target = self.samples[task][index]
                 sample = pil_loader(path, convert_rgb=(task=='rgb'))
+                sample = sample.convert('P') if 'semseg' in task else sample
                 sample_dict[task] = sample
             # self.cache[index] = deepcopy((sample_dict, target))
 
