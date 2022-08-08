@@ -28,7 +28,7 @@ Once pre-trained, a single MultiMAE encoder can then be used for both single-mod
 - [x] Depth estimation fine-tuning code
 - [x] Taskonomy fine-tuning code
 - [x] Colab & Hugging Face demos
-
+- [x] Download links for ImageNet-1K depth and semantic segmentation pseudo labels
 
 ## Pre-trained models
 
