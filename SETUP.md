@@ -70,7 +70,31 @@ We use the following datasets in our experiments:
 To download these datasets, please follow the instructions on their respective pages. 
 To extract semantic classes from NYUv2, follow the [data preparations instructions from ShapeConv](https://github.com/hanchaoleng/ShapeConv/tree/master/data_preparation).
 
+### Downloadable ImageNet-1K pseudo labels
+
+We publish links to download the Omnidata depth and COCO semantic segmentation pseudo labels [here](https://github.com/EPFL-VILAB/MultiMAE/tree/main/tools/pseudolabel_links).
+The images for each ImageNet class are stored as tar-files.
+
+To download the dataset, we recommend using aria2c, which you can install using:
+
+```
+sudo apt-get update
+sudo apt-get install aria2
+```
+
+Download both train and validation splits for the depth and semantic segmentation labels by calling
+
+```
+aria2c --input-file ./tools/pseudolabel_links/all_aria2c.txt -d /the/download/directory -j 16 -x 16
+```
+
+For additional download options, please see the [aria2c documentation](http://aria2.github.io/manual/en/html/aria2c.html).
+
+Please note that by downloading this dataset you are consenting to non-commercial use and the license.
+
 ### Pseudo labeling networks
+
+:information_source: The MultiMAE pre-training strategy is flexible and can benefit from higher quality pseudo labels and ground truth data. So feel free to use different pseudo labeling networks and datasets than the ones we used!
 
 We use two off-the-shelf networks to pseudo label the ImageNet-1K dataset. 
 
@@ -78,5 +102,3 @@ We use two off-the-shelf networks to pseudo label the ImageNet-1K dataset.
 - **Semantic segmentation**: We use a [Mask2Former](https://bowenc0221.github.io/mask2former/) with a Swin-S backbone pre-trained on the [COCO](https://cocodataset.org/) dataset. You can find installation instructions and pre-trained weights for this model [**here**](https://github.com/facebookresearch/Mask2Former).
 
 For an example of how to use these networks for pseudo labeling, please take a look at our [**Colab notebook**](https://colab.research.google.com/github/EPFL-VILAB/MultiMAE/blob/main/MultiMAE_Demo.ipynb).
-
-:information_source: The MultiMAE pre-training strategy is flexible and can benefit from higher quality pseudo labels and ground truth data. So feel free to use different pseudo labeling networks and datasets than the ones we used!
