@@ -25,6 +25,7 @@ sh tools/install_pillow_simd.sh
 
 ## Dataset Preparation
 
+
 ### Dataset structure
 
 For simplicity and uniformity, all our datasets are structured in the following way:
@@ -68,7 +69,7 @@ We use the following datasets in our experiments:
 - [**Taskonomy**](https://github.com/StanfordVL/taskonomy/tree/master/data)
 
 To download these datasets, please follow the instructions on their respective pages. 
-To extract semantic classes from NYUv2, follow the [data preparations instructions from ShapeConv](https://github.com/hanchaoleng/ShapeConv/tree/master/data_preparation).
+To prepare the NYUv2 dataset, we recommend using the provided [`prepare_nyuv2.py`](tools/prepare_nyuv2.py) script.
 
 ### Downloadable ImageNet-1K pseudo labels
 
