@@ -144,7 +144,7 @@ If you find this repository helpful, please consider citing our work:
 @article{bachmann2022multimae,
   author    = {Roman Bachmann and David Mizrahi and Andrei Atanov and Amir Zamir},
   title     = {{MultiMAE}: Multi-modal Multi-task Masked Autoencoders},
-  journal   = {arXiv preprint arXiv:2204.01678},
+  booktitle={European Conference on Computer Vision},
   year      = {2022},
 }
 ```
