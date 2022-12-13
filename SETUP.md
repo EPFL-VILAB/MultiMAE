@@ -63,7 +63,7 @@ Semantic segmentation maps are stored as single-channel PNG images.
 
 We use the following datasets in our experiments:
 - [**ImageNet-1K**](https://www.image-net.org/)
-- [**ADE20K**](https://groups.csail.mit.edu/vision/datasets/ADE20K/)
+- [**ADE20K**](http://sceneparsing.csail.mit.edu/)
 - [**Hypersim**](https://github.com/apple/ml-hypersim)
 - [**NYUv2**](https://cs.nyu.edu/~silberman/datasets/nyu_depth_v2.html)
 - [**Taskonomy**](https://github.com/StanfordVL/taskonomy/tree/master/data)
